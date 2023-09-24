@@ -7,7 +7,7 @@ private:
 public:
 	myString();//Х	конструктор по умолчанию, позвол€ющий создать строку длиной 80 символов; 
 	myString(int size);//Х	конструктор, позвол€ющий создавать строку произвольного размера; 
-	myString(char* str);//Х	конструктор, который создаЄт строку и инициализирует еЄ строкой, полученной от пользовател€. 
+	myString(const char* str);//Х	конструктор, который создаЄт строку и инициализирует еЄ строкой, полученной от пользовател€. 
 	~myString();//Х	деструктор;
 
 	void Input();
@@ -19,11 +19,15 @@ public:
 	int GetLen();//√еттер возвращаем длину
 
 	myString(myString& otherObj);// копирование строк
-	bool MyStrStr(const char* str);// поиск подстроки в строке
+	void AskStrToCheck();
+	bool MyStrStr(const char* str, const char* p);// поиск подстроки в строке
 	int  MyChr(char c); // поиск символа в строке(индекс найденного символа, либо -1)
 	int MyStrLen();// возвращает длину строки
-	void MyStrCat(myString& b); // объединение строк
+	myString operator+(myString& otherObj);
 	void MyDelChr(char c); // удал€ет указанный символ 
 	int MyStrCmp(myString& b); // сравнение строк 
 
+	bool operator>(myString& otherObj);
+	bool operator<(myString& otherObj);
+	bool operator==(myString& otherObj);
 };

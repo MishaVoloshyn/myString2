@@ -1,3 +1,6 @@
+#pragma warning(disable: 4996)
+#define _CRT_SECURE_NO_WARNINGS
+
 #include"myString.h";
 #include <iostream>
 
@@ -15,7 +18,7 @@ myString::myString(int size)
 	str = new char[length + 1];
 }
 
-myString::myString(char* user)
+myString::myString(const char* user)
 {
 	length = strlen(user) + 1;
 	str = new char[length];
@@ -71,9 +74,28 @@ myString::myString(myString& otherObj)
 	strcpy_s(str, length + 1, otherObj.str);
 }
 
-bool myString::MyStrStr(const char* str)
+void myString::AskStrToCheck()
 {
-	return false;
+	const char* p;
+	char subs[50];
+	cout << "Enter substring: ";
+	cin >> subs;
+	p = strstr(str, subs);
+	MyStrStr(str, p);
+}
+
+bool myString::MyStrStr(const char* str, const char* p)
+{
+
+	if (p) {
+		cout << "True" << endl;
+		return true;
+	}
+	else {
+		cout << "False" << endl;
+		return false;
+	}
+
 }
 
 int myString::MyChr(char c)
@@ -93,18 +115,89 @@ int myString::MyChr(char c)
 
 int myString::MyStrLen()
 {
-	return 0;
+	return  strlen(str) + 1;
 }
 
-void myString::MyStrCat(myString& b)
+myString myString::operator+(myString& otherObj)
 {
+	myString b;
+	int sizeobj1 = this->length - 1;
+	int sizeobj2 = otherObj.length - 1;
+	b.length = sizeobj1 + sizeobj2;
+	b.str = new char[b.length + 1];
+	strcpy(b.str, str);
+	strcat(b.str, otherObj.str);
+	return b;
 }
 
 void myString::MyDelChr(char c)
 {
+	int counter = 0;
+	for (int i = 0; i < length; i++)
+	{
+		if (str[i] == c)
+		{
+			counter++;
+		}
+	}
+	int size = length - counter;
+
+	char* temp = new char[size + 1];
+	for (int i = 0, k = 0; i < size + 1; i++)
+	{
+		if (str[i] != c)
+		{
+			temp[k] = str[i];
+			k++;
+		}
+	}
+	delete[]str;
+	length = size;
+	str = new char[length + 1];
+	str = temp;
+
 }
 
 int myString::MyStrCmp(myString& b)
 {
-	return 0;
+	if (strcmp(str, b.str) == -1)
+	{
+		return -1;
+	}
+	else if (strcmp(str, b.str) == 1)
+	{
+		return 1;
+	}
+	else if (strcmp(str, b.str) == 0)
+	{
+		return 0;
+	}
+
+}
+
+bool myString::operator>(myString& otherObj)
+{
+	if (strcmp(str, otherObj.str) == 1)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool myString::operator<(myString& otherObj)
+{
+	if (strcmp(str, otherObj.str) == -1)
+	{
+		return true;
+	}
+	return false;
+}
+
+bool myString::operator==(myString& otherObj)
+{
+	if (strcmp(str, otherObj.str) == 0)
+	{
+		return true;
+	}
+	return false;
 }
