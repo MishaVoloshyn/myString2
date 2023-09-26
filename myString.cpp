@@ -3,6 +3,8 @@
 
 #include"myString.h";
 #include <iostream>
+#include <string.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -130,6 +132,23 @@ myString myString::operator+(myString& otherObj)
 	return b;
 }
 
+myString myString::operator=(const myString& otherObj)
+{
+	if (&otherObj!=this)
+	{
+		this->length = otherObj.length;
+
+		this->str = new char[otherObj.length];
+
+		for (int i = 0; i < otherObj.length; i++)
+		{
+			this->str[i] = otherObj.str[i];
+		}
+		
+	}
+	return *this;
+}
+
 void myString::MyDelChr(char c)
 {
 	int counter = 0;
@@ -200,4 +219,22 @@ bool myString::operator==(myString& otherObj)
 		return true;
 	}
 	return false;
+}
+
+ostream& operator<<(ostream& os, myString& otherObj)
+{
+	os << "char: " << otherObj.GetStr() << endl;
+	return os;
+
+}
+
+istream& operator>>(istream& is, myString& otherObj)
+{
+	char buff[100];
+	is >> buff;
+	char* ch = new char[strlen(buff) + 1];
+	strcpy_s(ch, strlen(buff) + 1, buff);
+	otherObj.SetLen(strlen(buff));
+	otherObj.SetStr(ch);
+	return is;
 }

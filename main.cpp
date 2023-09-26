@@ -12,32 +12,34 @@ int main() {
 	myString str("Weather");
 	myString userstr = str;
 	userstr.PrintConsole();
-	str.PrintConsole();
+	//str.PrintConsole();
 
 	str.AskStrToCheck();
 
-	char c;
-	cin >> c;
-	cout << str.MyChr(c) << endl;
+	//char c;
+	//cin >> c;
+	//cout << str.MyChr(c) << endl;
 
-	cout << str.MyStrLen() << endl;
+	//cout << str.MyStrLen() << endl;
 
-	char delch;
-	cin >> delch;
+	//char delch;
+	//cin >> delch;
 
-	userstr.MyDelChr(delch);
+	//userstr.MyDelChr(delch);
+	cout << str;
+
+	//cout << str.MyStrCmp(userstr) << endl;
+	//if (str > userstr) {
+	//	cout << "str > userstr" << endl;
+	//}
+	//if (str < userstr) {
+	//	cout << "str < userstr" << endl;
+	//}
+
+	//if (str == userstr) {
+	//	cout << "str == userstr" << endl;
+	//}
 
 
-	cout << str.MyStrCmp(userstr) << endl;
-	if (str > userstr) {
-		cout << "str > userstr" << endl;
-	}
-	if (str < userstr) {
-		cout << "str < userstr" << endl;
-	}
-
-	if (str == userstr) {
-		cout << "str == userstr" << endl;
-	}
-
+	
 }

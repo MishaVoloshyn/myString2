@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+using namespace std;
 class myString {
 private:
 	char* str;
@@ -23,11 +25,18 @@ public:
 	bool MyStrStr(const char* str, const char* p);// поиск подстроки в строке
 	int  MyChr(char c); // поиск символа в строке(индекс найденного символа, либо -1)
 	int MyStrLen();// возвращает длину строки
-	myString operator+(myString& otherObj);
 	void MyDelChr(char c); // удаляет указанный символ 
 	int MyStrCmp(myString& b); // сравнение строк 
 
+	myString operator+(myString& otherObj);
+	myString operator=(const myString& otherObj);
 	bool operator>(myString& otherObj);
 	bool operator<(myString& otherObj);
 	bool operator==(myString& otherObj);
+
+
+	
 };
+
+ostream& operator<<(ostream& os, myString& otherObj);
+istream& operator>>(istream& is, myString& otherObj); 
